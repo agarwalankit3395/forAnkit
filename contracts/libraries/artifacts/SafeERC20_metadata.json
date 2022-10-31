@@ -1,0 +1,71 @@
+{
+	"compiler": {
+		"version": "0.7.6+commit.7338295f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Wrappers around ERC20 operations that throw on failure (when the token contract returns false). Tokens that return no value (and instead revert or throw on failure) are also supported, non-reverting calls are assumed to be successful. To use this library you can add a `using SafeERC20 for IERC20;` statement to your contract, which allows you to call the safe operations as `token.safeTransfer(...)`, etc.",
+			"kind": "dev",
+			"methods": {},
+			"title": "SafeERC20",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"libraries/SafeERC20.sol": "SafeERC20"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"interfaces/IERC20.sol": {
+			"keccak256": "0x75fdf0f7e5360818aff8ea5e5156a1215363a35e286d93073ed7a4edebd701de",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c35aac84310fea81e29122638ce5c0029781bb242a8c1562ed2477728265e8bb",
+				"dweb:/ipfs/QmbQ2eaBdu2QCqGQa62EFRtZy4GDa1vXYVUHmUKqno17iH"
+			]
+		},
+		"libraries/Address.sol": {
+			"keccak256": "0x5ea3d829b3c30acf7cdca22b5fa47db086ec78994eb4aedd985c90a0c4af7ed1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://73ba96d3d76dac3d8c518cd18eda44584d5b38e90d01e189a542ac9c89c055dc",
+				"dweb:/ipfs/QmRJSttEoxhjGY94MDjVAUYM95i7nEQJBcej8rr2LhNgzz"
+			]
+		},
+		"libraries/SafeERC20.sol": {
+			"keccak256": "0x00237679752425a8cc9e7037a2e3109480f2fbc022abdaa26c3a1b53a276c4e5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7c35f1242ed1176b1381c8b63939d759063eca1b0b433efddbb6493eb640acf0",
+				"dweb:/ipfs/QmSY4BruyobXsCxtJgcD53eCKoFvBLaca6rnD69nwk3dhH"
+			]
+		},
+		"libraries/SafeMath.sol": {
+			"keccak256": "0x0d46e3a8aa45cda8240f0665588bf8a940b4315b7ae7e2cf1cb4b246acfbb142",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://65895910554967e61763f764dfcbe95066c66abeae3675743b7ce36b30a46445",
+				"dweb:/ipfs/QmbovGexHdguxgMJXXUQSs4gafoinGDtg5sJPWTr7uHJcJ"
+			]
+		}
+	},
+	"version": 1
+}
