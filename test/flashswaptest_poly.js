@@ -99,7 +99,6 @@ describe("EXECUTING UNIV3-SUSHI ARB FLASH SWAP ", () => {
       usdc_contract_instance = new ethers.Contract(USDC_contract_addr, erc_abi, provider);
       accounts = await ethers.getSigners();
 
-
     // tag address for debugging purpose
 
     hre.tracer.nameTags[flash_contract.address] = "FLASH_CONTRACT_ADDRESS";
@@ -135,9 +134,15 @@ describe("EXECUTING UNIV3-SUSHI ARB FLASH SWAP ", () => {
  // now transfering WMATIC from whale to one of the default hardhat account (accounts[1] ->loanInititor)
 
 
-  await wmatic_contract_instance.connect(wmatic_whale).transfer(loanInitiatorAccountAddress, amount);
+  const tx = await wmatic_contract_instance.connect(wmatic_whale).transfer(loanInitiatorAccountAddress, amount);
   WMATIC_LOAN_INITIATOR_WALLTET_ADDRESS_BALANCE_FRONTEND =  Number(ethers.utils.formatUnits((await wmatic_contract_instance.balanceOf(loanInitiatorAccountAddress))));
-
+  const rc = await tx.wait();
+  // console.log(rc)
+  const event = rc.events.find(event => event.event === 'Transfer');
+  console.log("Checking Events : ", event.args)
+  const [src, dst, wad] = event.args;
+    await new Promise(res => setTimeout(() => res(null), 30000));
+  console.log(src, dst, wad.toString());
 
   console.log('Print and Verify loanInitiatorAccountAddress' , loanInitiatorAccountAddress);
   console.log("WMATIC balance of loanInitiatorAccountAddress:",WMATIC_LOAN_INITIATOR_WALLTET_ADDRESS_BALANCE_FRONTEND);
@@ -207,6 +212,7 @@ describe("EXECUTING UNIV3-SUSHI ARB FLASH SWAP ", () => {
    
   tx = await uniV3_swap_contract.connect(loanInitiator).swapTokenMax(WMATIC_contract_addr, USDC_contract_addr, ethers.utils.parseEther('10'));
   await tx.wait();
+  // await new Promise(res => setTimeout(() => res(null), 30000));
   //console.log('tx' , tx);
   
   console.log('---------after Swapping WMATIC to USDC on UNIV3 swap contract by loanInitiatorAccountAddress ------------');
@@ -247,6 +253,5 @@ describe("EXECUTING UNIV3-SUSHI ARB FLASH SWAP ", () => {
 
   });
 
-
-
+  
 });

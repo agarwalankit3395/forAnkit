@@ -1,27 +1,12 @@
 
-//const { ethers } = require('ethers');
 const { ethers , network } = require("hardhat");
-//require('./helpers/server');
-const { abi: IUniswapV3PoolABI } = require('@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json');
-const { abi: SwapRouterABI} = require('@uniswap/v3-periphery/artifacts/contracts/interfaces/ISwapRouter.sol/ISwapRouter.json');
-const { getPoolImmutables, getPoolState } = require('../helpers/helpers.js');
 const ERC20ABI = require( '../helpers/erc20ABI.json');
-require('dotenv').config();
-
-
-// const INFURA_URL_TESTNET = process.env.INFURA_URL_TESTNET ;
-// const WALLET_ADDRESS = process.env.WALLET_ADDRESS ;
-// const WALLET_SECRET = process.env.WALLET_SECRET ;
-
-
-const WALLET_ADDRESS = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266" ;
-const WALLET_SECRET =  "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
-
+const WMATIC_WHALE_WALLTET_ADDRESS = "0xe7804c37c13166fF0b37F5aE0BB07A3aEbb6e245";
 
 const chainId = 137;
 //const provider = new ethers.providers.getDefaultProvider("http://127.0.0.1:8545/");
- const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545/");
- //const provider = new ethers.providers.JsonRpcProvider('https://polygon-mainnet.g.alchemy.com/v2/zF-EZv66IP0tcXh9wNv4s6VmxSmW9RMN');
+//  const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545/");
+//const provider = new ethers.providers.JsonRpcProvider('https://polygon-mainnet.g.alchemy.com/v2/zF-EZv66IP0tcXh9wNv4s6VmxSmW9RMN');
 
 
 const UNIV3_PoolAddress = "0xa374094527e1673a86de625aa59517c5de346d32";            // WMATIC-USDC pool on polygon mainnet
@@ -30,7 +15,6 @@ const UNIV3_swapRouterAddress = "0xE592427A0AEce92De3Edee1F18E0157C05861564";
 
 // WMATIC WHALE_ADDRESS : https://polygonscan.com/address/0xe7804c37c13166fF0b37F5aE0BB07A3aEbb6e245
 
-const WMATIC_WHALE_WALLTET_ADDRESS = "0xe7804c37c13166fF0b37F5aE0BB07A3aEbb6e245";
 
 
 const name0 = 'Wrapped MATIC'
@@ -46,7 +30,8 @@ const token1_address = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174"      // USDC
 
 
 async function main() {
-
+  
+  const provider = await ethers.getSigner(WMATIC_WHALE_WALLTET_ADDRESS);  // Ankit Change
 
   signers = await ethers.getSigners(); 
   signer = signers[0];
@@ -68,7 +53,7 @@ async function main() {
 
    
   wmatic_whale = await ethers.getSigner(WMATIC_WHALE_WALLTET_ADDRESS);
-  console.log('wmatic_whale' , wmatic_whale);
+  // console.log('wmatic_whale' , wmatic_whale);
 
 
   // First top up account-0 (signer) with 200 WMATIC 
@@ -85,8 +70,8 @@ async function main() {
 const name = await wmatic_contract_instance.name();
 //console.log('name', name);
 
-const block = await provider.getBlockNumber();
-console.log('block', block) ;
+// const block = await provider.getBlockNumber();
+// console.log('block', block) ;
 
  // first check if the WHALE account from which we are hacking WMATIC does contains more than 200 WMATIC
 
