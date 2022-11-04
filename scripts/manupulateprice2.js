@@ -23,8 +23,9 @@ async function main() {
     console.log("WMATIC balance of whale", WMATIC_WHALE_WALLTET_ADDRESS_BALANCE / 1e18)
 
     console.log("transfering to", loanInitiatorAccountAddress);
-
-    await wmatic_contract_instance.connect(signer).transfer(loanInitiatorAccountAddress, WMATIC_WHALE_WALLTET_ADDRESS_BALANCE)
+    const amount = 450n * 10n ** 18n;
+    await wmatic_contract_instance.connect(signer).transfer(loanInitiatorAccountAddress, amount)
+    // await wmatic_contract_instance.connect(signer).transfer(loanInitiatorAccountAddress, WMATIC_WHALE_WALLTET_ADDRESS_BALANCE)
     const accountBalance = await wmatic_contract_instance.balanceOf(loanInitiatorAccountAddress)
 
     console.log("transfer complete. Congratulations!")
